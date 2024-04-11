@@ -129,12 +129,12 @@ public class TechJobs {
         // iterates through array list of somejobs.
         //for each job(job.entryset) it prints the job details by iterating over the hashmap representing the job and prints key-value pair.
         for(HashMap<String,String> job :someJobs){
-            System.out.println("*****");
+            System.out.println("\n*****");
             for(Map.Entry<String,String>entry: job.entrySet()){
                 System.out.println(entry.getKey()+ ": "+entry.getValue());
 
             }
-            System.out.println("*****\n");
+            System.out.println("*****");
         }
     }
 }
