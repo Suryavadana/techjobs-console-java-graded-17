@@ -5,10 +5,7 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -74,8 +71,8 @@ public class JobData {
         for (HashMap<String, String> row : allJobs) {
 
             String aValue = row.get(column);
-
-            if (aValue.contains(value)) {
+            // Convert both the search term and the field value to lowercase for case-insensitive comparison
+            if (aValue!=null && aValue.toLowerCase().contains(value.toLowerCase())) {
                 jobs.add(row);
             }
         }
@@ -95,8 +92,28 @@ public class JobData {
         loadData();
 
         // TODO - implement this method
-        return null;
+        //return null;
+        ArrayList<HashMap<String,String>> results=new ArrayList<>();
+        // Iterate over each job
+        for (HashMap<String, String> job : allJobs) {
+            boolean found = false;
+
+        //iterate over each column of current job
+            for(Map.Entry<String, String>entry: job.entrySet()){
+                // Convert both the search term and the field value to lowercase for case-insensitive comparison
+                if (entry.getValue().toLowerCase().contains(value.toLowerCase())) {
+                    found = true;
+                    break;
+                }
+            }
+            // If the search term is found in any column of the job, add it to the results
+            if (found && !results.contains(job)) {
+                results.add(job);
+            }
+        }
+    return results;
     }
+
 
     /**
      * Read in data from a CSV file and store it in a list
