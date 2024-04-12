@@ -123,7 +123,7 @@ public class TechJobs {
         //System.out.println("printJobs is not implemented yet");
         //if there are no jobs it prints No Results.
         if(someJobs.isEmpty()){
-            System.out.println("No Results");
+            System.out.print("No Results");
             return;
         }
         // iterates through array list of somejobs.
